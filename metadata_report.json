@@ -1,0 +1,1149 @@
+{
+  "scanned_at": "2026-11-05T00:41:29.292616+00:00",
+  "source": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "sakila"
+  },
+  "summary": {
+    "tables_found": 23,
+    "base_tables": 16,
+    "profiled": 16,
+    "profiling_errors": 0,
+    "reconciled": true,
+    "issues_found": 1
+  },
+  "tables": {
+    "actor": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "actor_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "first_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 200,
+      "issues": []
+    },
+    "actor_info": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "actor_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "first_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "last_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "film_info",
+          "data_type": "text",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "address": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "address_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "address",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "address2",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null,
+          "null_count": 4,
+          "null_pct": 0.66
+        },
+        {
+          "name": "district",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "city_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "postal_code",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "phone",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "location",
+          "data_type": "geometry",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 603,
+      "issues": []
+    },
+    "category": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "category_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 16,
+      "issues": []
+    },
+    "city": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "city_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "city",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "country_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 600,
+      "issues": []
+    },
+    "country": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "country_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "country",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 109,
+      "issues": []
+    },
+    "customer": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "customer_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "store_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "first_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "email",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "address_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "active",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "create_date",
+          "data_type": "datetime",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 599,
+      "issues": []
+    },
+    "customer_list": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "ID",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "name",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "address",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "zip code",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "phone",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "city",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "country",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "notes",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "SID",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "film": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "title",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "release_year",
+          "data_type": "year",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "language_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "original_language_id",
+          "data_type": "tinyint",
+          "nullable": true,
+          "key": "MUL",
+          "null_count": 1000,
+          "null_pct": 100.0
+        },
+        {
+          "name": "rental_duration",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "rental_rate",
+          "data_type": "decimal",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "length",
+          "data_type": "smallint",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "replacement_cost",
+          "data_type": "decimal",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "rating",
+          "data_type": "enum",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "special_features",
+          "data_type": "set",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 1000,
+      "issues": [
+        {
+          "rule": "all_null_column",
+          "detail": "column original_language_id is always NULL"
+        }
+      ]
+    },
+    "film_actor": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "actor_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 5462,
+      "issues": []
+    },
+    "film_category": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "category_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 1000,
+      "issues": []
+    },
+    "film_list": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "FID",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "title",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "category",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "price",
+          "data_type": "decimal",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "length",
+          "data_type": "smallint",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "rating",
+          "data_type": "enum",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "actors",
+          "data_type": "text",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "film_text": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "title",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 1000,
+      "issues": []
+    },
+    "inventory": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "inventory_id",
+          "data_type": "mediumint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "store_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 4581,
+      "issues": []
+    },
+    "language": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "language_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "name",
+          "data_type": "char",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 6,
+      "issues": []
+    },
+    "nicer_but_slower_film_list": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "FID",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "title",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "description",
+          "data_type": "text",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "category",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "price",
+          "data_type": "decimal",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "length",
+          "data_type": "smallint",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "rating",
+          "data_type": "enum",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "actors",
+          "data_type": "text",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "payment": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "payment_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "customer_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "staff_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "rental_id",
+          "data_type": "int",
+          "nullable": true,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "amount",
+          "data_type": "decimal",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "payment_date",
+          "data_type": "datetime",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 16044,
+      "issues": []
+    },
+    "rental": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "rental_id",
+          "data_type": "int",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "rental_date",
+          "data_type": "datetime",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "inventory_id",
+          "data_type": "mediumint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "customer_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "return_date",
+          "data_type": "datetime",
+          "nullable": true,
+          "key": null,
+          "null_count": 183,
+          "null_pct": 1.14
+        },
+        {
+          "name": "staff_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 16044,
+      "issues": []
+    },
+    "sales_by_film_category": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "category",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "total_sales",
+          "data_type": "decimal",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "sales_by_store": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "store",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "manager",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "total_sales",
+          "data_type": "decimal",
+          "nullable": true,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "staff": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "staff_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "first_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "address_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "picture",
+          "data_type": "blob",
+          "nullable": true,
+          "key": null,
+          "null_count": 1,
+          "null_pct": 50.0
+        },
+        {
+          "name": "email",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "store_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "active",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "username",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "password",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null,
+          "null_count": 1,
+          "null_pct": 50.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 2,
+      "issues": []
+    },
+    "staff_list": {
+      "type": "VIEW",
+      "columns": [
+        {
+          "name": "ID",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "name",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "address",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "zip code",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "phone",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "city",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "country",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "SID",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "issues": []
+    },
+    "store": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "store_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "manager_staff_id",
+          "data_type": "tinyint",
+          "nullable": false,
+          "key": "UNI",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "address_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0
+        }
+      ],
+      "row_count": 2,
+      "issues": []
+    }
+  }
+}
