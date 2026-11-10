@@ -15,12 +15,13 @@ Usage:
   pip install mysql-connector-python
   python scan_metadata.py
 """
-import json
-import logging
-import os
-import sys
-import time
+import argparse, json, logging, os, sys, time
 from datetime import datetime, timezone
+from dotenv import load_dotenv
+
+load_dotenv()
+
+exclude_tables = os.getenv("EXCLUDE_TABLES")
 
 import mysql.connector
 from mysql.connector import Error
@@ -32,9 +33,7 @@ CONFIG = {
     "port": int(os.getenv("DB_PORT", "3306")),
     "user": os.getenv("DB_USER", "root"),
     "password": os.getenv("DB_PASSWORD", "changeme"),
-    "database": os.getenv("DB_NAME", "sakila"),
 }
-OUTPUT_FILE = os.getenv("OUTPUT_FILE", "metadata_report.json")
 
 
 def _s(value):
@@ -49,12 +48,12 @@ def quote(name):
     return "`" + name.replace("`", "``") + "`"
 
 
-def connect_with_retry(max_attempts=5, base_delay=2):
+def connect_with_retry(schema, max_attempts=5, base_delay=1):
     """Connect to MySQL, waiting longer after each failed attempt."""
     for attempt in range(1, max_attempts + 1):
         try:
             conn = mysql.connector.connect(**CONFIG)
-            log.info("Connected to %s:%s/%s", CONFIG["host"], CONFIG["port"], CONFIG["database"])
+            log.info("Connected to %s:%s/%s", CONFIG["host"], CONFIG["port"], schema)
             return conn
         except Error as exc:
             if attempt == max_attempts:
@@ -93,16 +92,20 @@ def fetch_schema(conn, schema):
 
 def profile_table(conn, schema, table, columns):
     """One query per table: total rows plus the NULL count of every column."""
-    parts = ["COUNT(*)"] + [f"SUM({quote(c['name'])} IS NULL)" for c in columns]
+    parts = ["COUNT(*)"] + [f"SUM({quote(c['name'])} IS NULL)" for c in columns] + [f"COUNT(DISTINCT {quote(c['name'])})" for c in columns]
     sql = f"SELECT {', '.join(parts)} FROM {quote(schema)}.{quote(table)}"
     cur = conn.cursor()
     cur.execute(sql)
     row = cur.fetchone()
     cur.close()
     row_count = int(row[0])
-    for col, nulls in zip(columns, row[1:]):
+    n = len(columns)
+    null_counts = row[1:1 + n]
+    distinct_counts = row[1 + n:]
+    for col, nulls, distincts in zip(columns, null_counts, distinct_counts):
         col["null_count"] = int(nulls or 0)  # SUM() is NULL when the table is empty
         col["null_pct"] = round(100 * col["null_count"] / row_count, 2) if row_count else None
+        col["distinct_count"] = int(distincts or 0)
     return row_count
 
 
@@ -116,8 +119,12 @@ def check_quality(info):
             issues.append({"rule": "empty_table", "detail": "table has zero rows"})
         elif info.get("row_count"):
             for c in info["columns"]:
-                if c["nullable"] and c["null_count"] == info["row_count"]:
-                    issues.append({"rule": "all_null_column", "detail": f"column {c['name']} is always NULL"})
+                if c["null_pct"] is not None and c["null_pct"] >= 50:
+                    issues.append({"rule": "mostly_null_column",
+                                "detail": f"column {c['name']} is {c['null_pct']}% NULL"})
+                if c["distinct_count"] == info.get("row_count"):
+                    issues.append({"rule": "cols_rows_equal",
+                                "detail": f"column {c['name']} count is equal to row count: {c['distinct_count']}"})
     return issues
 
 
@@ -128,6 +135,10 @@ def scan(conn, schema):
     for name, info in tables.items():
         if info["type"] != "BASE TABLE":
             log.info("Skipping profiling for %s (%s)", name, info["type"])
+            info["issues"] = []
+            continue
+        elif name in exclude_tables:
+            log.info("Excluding table %s (%s)", name, info["type"])
             info["issues"] = []
             continue
         try:
@@ -161,22 +172,44 @@ def build_report(schema, tables, errors):
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Sample metadata scanner."
+    )
+
+    parser.add_argument(
+        "--output", 
+        type=str, 
+        default="metadata_report.json",
+        help="The name of the JSON file to write output to"
+    )
+
+    parser.add_argument(
+        "-db", "--database", 
+        type=str, 
+        default="sakila", 
+        help="The name of the database to connect to"
+    )
+
+    # 5. Parse the command line inputs
+    args = parser.parse_args()
+
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    schema = CONFIG["database"]
+    schema = args.database
     try:
-        conn = connect_with_retry()
+        conn = connect_with_retry(schema)
     except Error:
         return 1
     try:
         tables, errors = scan(conn, schema)
     finally:
         conn.close()
+    
     report = build_report(schema, tables, errors)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as fh:
+    with open(args.output, "w", encoding="utf-8") as fh:
         json.dump(report, fh, indent=2)
     s = report["summary"]
     log.info("Wrote %s: %d tables, %d issues, %d errors, reconciled=%s",
-             OUTPUT_FILE, s["tables_found"], s["issues_found"], s["profiling_errors"], s["reconciled"])
+             args.output, s["tables_found"], s["issues_found"], s["profiling_errors"], s["reconciled"])
     return 1 if errors or not s["reconciled"] else 0
 
 

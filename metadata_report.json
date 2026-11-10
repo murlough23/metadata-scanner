@@ -1,5 +1,5 @@
 {
-  "scanned_at": "2026-11-05T00:41:29.292616+00:00",
+  "scanned_at": "2026-11-10T01:12:55.898704+00:00",
   "source": {
     "host": "127.0.0.1",
     "port": 3306,
@@ -8,10 +8,10 @@
   "summary": {
     "tables_found": 23,
     "base_tables": 16,
-    "profiled": 16,
+    "profiled": 14,
     "profiling_errors": 0,
-    "reconciled": true,
-    "issues_found": 1
+    "reconciled": false,
+    "issues_found": 35
   },
   "tables": {
     "actor": {
@@ -23,7 +23,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 200
         },
         {
           "name": "first_name",
@@ -31,7 +32,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 128
         },
         {
           "name": "last_name",
@@ -39,7 +41,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 121
         },
         {
           "name": "last_update",
@@ -47,11 +50,17 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 200,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column actor_id count is equal to row count: 200"
+        }
+      ]
     },
     "actor_info": {
       "type": "VIEW",
@@ -92,7 +101,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 603
         },
         {
           "name": "address",
@@ -100,7 +110,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 603
         },
         {
           "name": "address2",
@@ -108,7 +119,8 @@
           "nullable": true,
           "key": null,
           "null_count": 4,
-          "null_pct": 0.66
+          "null_pct": 0.66,
+          "distinct_count": 1
         },
         {
           "name": "district",
@@ -116,7 +128,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 378
         },
         {
           "name": "city_id",
@@ -124,7 +137,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "postal_code",
@@ -132,7 +146,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 597
         },
         {
           "name": "phone",
@@ -140,7 +155,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 602
         },
         {
           "name": "location",
@@ -148,7 +164,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 460
         },
         {
           "name": "last_update",
@@ -156,11 +173,21 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 247
         }
       ],
       "row_count": 603,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column address_id count is equal to row count: 603"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column address count is equal to row count: 603"
+        }
+      ]
     },
     "category": {
       "type": "BASE TABLE",
@@ -171,7 +198,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 16
         },
         {
           "name": "name",
@@ -179,7 +207,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 16
         },
         {
           "name": "last_update",
@@ -187,11 +216,21 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 16,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column category_id count is equal to row count: 16"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column name count is equal to row count: 16"
+        }
+      ]
     },
     "city": {
       "type": "BASE TABLE",
@@ -202,7 +241,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 600
         },
         {
           "name": "city",
@@ -210,7 +250,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "country_id",
@@ -218,7 +259,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 109
         },
         {
           "name": "last_update",
@@ -226,11 +268,17 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 600,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column city_id count is equal to row count: 600"
+        }
+      ]
     },
     "country": {
       "type": "BASE TABLE",
@@ -241,7 +289,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 109
         },
         {
           "name": "country",
@@ -249,7 +298,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 109
         },
         {
           "name": "last_update",
@@ -257,11 +307,21 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 109,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column country_id count is equal to row count: 109"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column country count is equal to row count: 109"
+        }
+      ]
     },
     "customer": {
       "type": "BASE TABLE",
@@ -272,7 +332,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "store_id",
@@ -280,7 +341,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "first_name",
@@ -288,7 +350,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 591
         },
         {
           "name": "last_name",
@@ -296,7 +359,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "email",
@@ -304,7 +368,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "address_id",
@@ -312,7 +377,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "active",
@@ -320,7 +386,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "create_date",
@@ -328,7 +395,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "last_update",
@@ -336,11 +404,29 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 599,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column customer_id count is equal to row count: 599"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column last_name count is equal to row count: 599"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column email count is equal to row count: 599"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column address_id count is equal to row count: 599"
+        }
+      ]
     },
     "customer_list": {
       "type": "VIEW",
@@ -411,7 +497,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "title",
@@ -419,7 +506,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "description",
@@ -427,7 +515,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "release_year",
@@ -435,7 +524,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         },
         {
           "name": "language_id",
@@ -443,7 +533,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         },
         {
           "name": "original_language_id",
@@ -451,7 +542,8 @@
           "nullable": true,
           "key": "MUL",
           "null_count": 1000,
-          "null_pct": 100.0
+          "null_pct": 100.0,
+          "distinct_count": 0
         },
         {
           "name": "rental_duration",
@@ -459,7 +551,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 5
         },
         {
           "name": "rental_rate",
@@ -467,7 +560,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 3
         },
         {
           "name": "length",
@@ -475,7 +569,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 140
         },
         {
           "name": "replacement_cost",
@@ -483,7 +578,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 21
         },
         {
           "name": "rating",
@@ -491,7 +587,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 5
         },
         {
           "name": "special_features",
@@ -499,7 +596,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 15
         },
         {
           "name": "last_update",
@@ -507,14 +605,27 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 1000,
       "issues": [
         {
-          "rule": "all_null_column",
-          "detail": "column original_language_id is always NULL"
+          "rule": "cols_rows_equal",
+          "detail": "column film_id count is equal to row count: 1000"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column title count is equal to row count: 1000"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column description count is equal to row count: 1000"
+        },
+        {
+          "rule": "mostly_null_column",
+          "detail": "column original_language_id is 100.0% NULL"
         }
       ]
     },
@@ -527,7 +638,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 200
         },
         {
           "name": "film_id",
@@ -535,7 +647,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 997
         },
         {
           "name": "last_update",
@@ -543,7 +656,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 5462,
@@ -558,7 +672,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "category_id",
@@ -566,7 +681,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 16
         },
         {
           "name": "last_update",
@@ -574,11 +690,17 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 1000,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column film_id count is equal to row count: 1000"
+        }
+      ]
     },
     "film_list": {
       "type": "VIEW",
@@ -643,7 +765,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "title",
@@ -651,7 +774,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         },
         {
           "name": "description",
@@ -659,11 +783,25 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1000
         }
       ],
       "row_count": 1000,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column film_id count is equal to row count: 1000"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column title count is equal to row count: 1000"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column description count is equal to row count: 1000"
+        }
+      ]
     },
     "inventory": {
       "type": "BASE TABLE",
@@ -674,7 +812,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 4581
         },
         {
           "name": "film_id",
@@ -682,7 +821,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 958
         },
         {
           "name": "store_id",
@@ -690,7 +830,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "last_update",
@@ -698,11 +839,17 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 4581,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column inventory_id count is equal to row count: 4581"
+        }
+      ]
     },
     "language": {
       "type": "BASE TABLE",
@@ -711,28 +858,21 @@
           "name": "language_id",
           "data_type": "tinyint",
           "nullable": false,
-          "key": "PRI",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "PRI"
         },
         {
           "name": "name",
           "data_type": "char",
           "nullable": false,
-          "key": null,
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": null
         },
         {
           "name": "last_update",
           "data_type": "timestamp",
           "nullable": false,
-          "key": null,
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": null
         }
       ],
-      "row_count": 6,
       "issues": []
     },
     "nicer_but_slower_film_list": {
@@ -798,7 +938,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 16044
         },
         {
           "name": "customer_id",
@@ -806,7 +947,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 599
         },
         {
           "name": "staff_id",
@@ -814,7 +956,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "rental_id",
@@ -822,7 +965,8 @@
           "nullable": true,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 16044
         },
         {
           "name": "amount",
@@ -830,7 +974,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 19
         },
         {
           "name": "payment_date",
@@ -838,7 +983,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 15815
         },
         {
           "name": "last_update",
@@ -846,11 +992,21 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 704
         }
       ],
       "row_count": 16044,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column payment_id count is equal to row count: 16044"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column rental_id count is equal to row count: 16044"
+        }
+      ]
     },
     "rental": {
       "type": "BASE TABLE",
@@ -859,60 +1015,45 @@
           "name": "rental_id",
           "data_type": "int",
           "nullable": false,
-          "key": "PRI",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "PRI"
         },
         {
           "name": "rental_date",
           "data_type": "datetime",
           "nullable": false,
-          "key": "MUL",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "MUL"
         },
         {
           "name": "inventory_id",
           "data_type": "mediumint",
           "nullable": false,
-          "key": "MUL",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "MUL"
         },
         {
           "name": "customer_id",
           "data_type": "smallint",
           "nullable": false,
-          "key": "MUL",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "MUL"
         },
         {
           "name": "return_date",
           "data_type": "datetime",
           "nullable": true,
-          "key": null,
-          "null_count": 183,
-          "null_pct": 1.14
+          "key": null
         },
         {
           "name": "staff_id",
           "data_type": "tinyint",
           "nullable": false,
-          "key": "MUL",
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": "MUL"
         },
         {
           "name": "last_update",
           "data_type": "timestamp",
           "nullable": false,
-          "key": null,
-          "null_count": 0,
-          "null_pct": 0.0
+          "key": null
         }
       ],
-      "row_count": 16044,
       "issues": []
     },
     "sales_by_film_category": {
@@ -966,7 +1107,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "first_name",
@@ -974,7 +1116,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "last_name",
@@ -982,7 +1125,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "address_id",
@@ -990,7 +1134,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "picture",
@@ -998,7 +1143,8 @@
           "nullable": true,
           "key": null,
           "null_count": 1,
-          "null_pct": 50.0
+          "null_pct": 50.0,
+          "distinct_count": 1
         },
         {
           "name": "email",
@@ -1006,7 +1152,8 @@
           "nullable": true,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "store_id",
@@ -1014,7 +1161,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "active",
@@ -1022,7 +1170,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         },
         {
           "name": "username",
@@ -1030,7 +1179,8 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "password",
@@ -1038,7 +1188,8 @@
           "nullable": true,
           "key": null,
           "null_count": 1,
-          "null_pct": 50.0
+          "null_pct": 50.0,
+          "distinct_count": 1
         },
         {
           "name": "last_update",
@@ -1046,11 +1197,49 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 2,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column staff_id count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column first_name count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column last_name count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column address_id count is equal to row count: 2"
+        },
+        {
+          "rule": "mostly_null_column",
+          "detail": "column picture is 50.0% NULL"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column email count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column store_id count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column username count is equal to row count: 2"
+        },
+        {
+          "rule": "mostly_null_column",
+          "detail": "column password is 50.0% NULL"
+        }
+      ]
     },
     "staff_list": {
       "type": "VIEW",
@@ -1115,7 +1304,8 @@
           "nullable": false,
           "key": "PRI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "manager_staff_id",
@@ -1123,7 +1313,8 @@
           "nullable": false,
           "key": "UNI",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "address_id",
@@ -1131,7 +1322,8 @@
           "nullable": false,
           "key": "MUL",
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 2
         },
         {
           "name": "last_update",
@@ -1139,11 +1331,25 @@
           "nullable": false,
           "key": null,
           "null_count": 0,
-          "null_pct": 0.0
+          "null_pct": 0.0,
+          "distinct_count": 1
         }
       ],
       "row_count": 2,
-      "issues": []
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column store_id count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column manager_staff_id count is equal to row count: 2"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column address_id count is equal to row count: 2"
+        }
+      ]
     }
   }
 }
