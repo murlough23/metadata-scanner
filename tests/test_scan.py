@@ -15,7 +15,7 @@ def test_flags_column_with_distinct_count_equal_to_rows():
     info = {"type": "BASE TABLE", "row_count": 5,
             "columns": [
                 {"name": "id", "key": "PRI", "nullable": False,
-                 "null_count": 0, "null_pct": 0.0, "distinct_count": 4},
+                 "null_count": 0, "null_pct": 0.0, "distinct_count": 5},
             ]}
     rules = [i["rule"] for i in check_quality(info)]
     assert "cols_rows_equal" in rules
