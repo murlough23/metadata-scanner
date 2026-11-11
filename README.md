@@ -74,6 +74,31 @@ python -m pytest -v
 
 The tests cover the quality rules using hand-built data, so no database is needed. A GitHub Actions workflow (`.github/workflows/tests.yml`) runs them on every pull request and on pushes to `main`.
 
+## Run in Docker
+
+The scanner can run as a container alongside the MySQL practice database.
+
+```bash
+# 1. Start the practice database on the shared network (safe to re-run)
+bash setup.sh
+
+# 2. Build the scanner image (re-run after any code change)
+docker build -t metadata-scanner .
+
+# 3. Run the scanner. Settings are passed in as environment variables.
+docker run --rm --network scanner-net \
+  -e DB_HOST=sample-mysql \
+  -e DB_PASSWORD=changeme \
+  -e OUTPUT_FILE=/out/metadata_report.json \
+  -v "$PWD":/out \
+  metadata-scanner
+```
+
+- `--network scanner-net` lets the scanner reach the database by container name. Inside a container, `127.0.0.1` would point at the scanner itself.
+- `-e DB_HOST=sample-mysql` overrides the default host, which only works outside Docker.
+- `-v "$PWD":/out` mounts the current folder so the report is written back to your machine instead of vanishing with the container.
+- To skip tables, add `-e EXCLUDE_TABLES=film,actor`. The `.env` file is not copied into the image (it's in `.dockerignore`), so settings have to be passed this way.
+
 ## Limitations and next steps
 
 - Profiling uses full-table `COUNT(*)` queries, which would be slow on very large tables. A production scanner would sample or use database statistics.

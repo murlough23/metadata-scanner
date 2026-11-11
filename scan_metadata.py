@@ -21,7 +21,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-exclude_tables = os.getenv("EXCLUDE_TABLES")
+exclude_tables = {t.strip() for t in os.getenv("EXCLUDE_TABLES", "").split(",") if t.strip()}
 
 import mysql.connector
 from mysql.connector import Error
