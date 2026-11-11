@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 docker rm -f sample-mysql 2>/dev/null || true
+docker network create scanner-net 2>/dev/null || true
 docker run --name sample-mysql -e MYSQL_ROOT_PASSWORD=changeme \
+  --network scanner-net \
   -p 3306:3306 -v mysql-data:/var/lib/mysql -d mysql:8
 
 echo "Waiting for MySQL..."
