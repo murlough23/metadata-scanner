@@ -74,6 +74,9 @@ python -m pytest -v
 
 The tests cover the quality rules using hand-built data, so no database is needed. A GitHub Actions workflow (`.github/workflows/tests.yml`) runs them on every pull request and on pushes to `main`.
 
+## Performance Notes
+Scanning large tables can take a long time (~8 seconds observed for a table with ~4M rows in Codespaces), so a --fast flag was added that returns an approximate count and skips the more detailed profiling.
+
 ## Run in Docker
 
 The scanner can run as a container alongside the MySQL practice database.
