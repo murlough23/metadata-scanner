@@ -109,26 +109,42 @@ def profile_table(conn, schema, table, columns):
     return row_count
 
 
+def estimate_row_count(conn, schema, table):
+    """Alternative to profile_table() when 'fast' flag is True."""
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT table_rows FROM information_schema.tables "
+        "WHERE table_schema = %s AND table_name = %s",
+        (schema, table),
+    )
+    row = cur.fetchone()
+    cur.close()
+    return int(row[0] or 0)
+
+
 def check_quality(info):
     """Simple rules; each returns a short issue code and detail."""
     issues = []
     if info["type"] == "BASE TABLE":
         if not any(c["key"] == "PRI" for c in info["columns"]):
             issues.append({"rule": "no_primary_key", "detail": "table has no primary key"})
-        if info.get("row_count") == 0:
+        if info.get("row_count") == 0 and info.get("row_count_exact"):
+            # table is only considered empty if we know the exact row count
             issues.append({"rule": "empty_table", "detail": "table has zero rows"})
         elif info.get("row_count"):
             for c in info["columns"]:
-                if c["null_pct"] is not None and c["null_pct"] >= 50:
-                    issues.append({"rule": "mostly_null_column",
-                                "detail": f"column {c['name']} is {c['null_pct']}% NULL"})
-                if c["distinct_count"] == info.get("row_count"):
-                    issues.append({"rule": "cols_rows_equal",
-                                "detail": f"column {c['name']} count is equal to row count: {c['distinct_count']}"})
+                # Only check these counts when not in fast mode
+                if "null_count" in c:
+                    if c["null_pct"] is not None and c["null_pct"] >= 50:
+                        issues.append({"rule": "mostly_null_column",
+                                    "detail": f"column {c['name']} is {c['null_pct']}% NULL"})
+                    if c["distinct_count"] == info.get("row_count"):
+                        issues.append({"rule": "cols_rows_equal",
+                                    "detail": f"column {c['name']} count is equal to row count: {c['distinct_count']}"})
     return issues
 
 
-def scan(conn, schema):
+def scan(conn, schema, fast=False):
     tables = fetch_schema(conn, schema)
     log.info("Found %d tables/views", len(tables))
     errors = 0
@@ -142,8 +158,13 @@ def scan(conn, schema):
             info["issues"] = []
             continue
         try:
-            info["row_count"] = profile_table(conn, schema, name, info["columns"])
-            log.info("Profiled %s: %d rows, %d columns", name, info["row_count"], len(info["columns"]))
+            if fast:
+                info["row_count"] = estimate_row_count(conn, schema, name)
+                info["row_count_exact"] = False
+            else:
+                info["row_count"] = profile_table(conn, schema, name, info["columns"])
+                info["row_count_exact"] = True
+            log.info("Profiled %s: %d rows (%s), %d columns", name, info["row_count"], 'Approximate' if fast else 'Exact', len(info["columns"]))
         except Error as exc:
             errors += 1
             info["error"] = str(exc)
@@ -190,17 +211,24 @@ def main():
         help="The name of the database to connect to"
     )
 
+    parser.add_argument(
+        "--fast", 
+        action='store_true',
+        help="Fast table scanning instead of using COUNT(*)"
+    )
+
     # 5. Parse the command line inputs
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     schema = args.database
+    fast = args.fast
     try:
         conn = connect_with_retry(schema)
     except Error:
         return 1
     try:
-        tables, errors = scan(conn, schema)
+        tables, errors = scan(conn, schema, fast)
     finally:
         conn.close()
     
