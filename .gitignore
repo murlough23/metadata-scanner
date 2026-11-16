@@ -221,3 +221,6 @@ __marimo__/
 
 # Database
 sakila-db/
+
+# Reports
+*_report.json
