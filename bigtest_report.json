@@ -1,0 +1,62 @@
+{
+  "scanned_at": "2026-11-14T08:35:05.551496+00:00",
+  "source": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "bigtest"
+  },
+  "summary": {
+    "tables_found": 1,
+    "base_tables": 1,
+    "profiled": 1,
+    "profiling_errors": 0,
+    "reconciled": true,
+    "issues_found": 0
+  },
+  "tables": {
+    "orders": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "order_id",
+          "data_type": "bigint",
+          "nullable": false,
+          "key": "PRI"
+        },
+        {
+          "name": "customer_id",
+          "data_type": "int",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "status",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null
+        },
+        {
+          "name": "amount",
+          "data_type": "decimal",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "notes",
+          "data_type": "varchar",
+          "nullable": true,
+          "key": null
+        },
+        {
+          "name": "created_at",
+          "data_type": "datetime",
+          "nullable": false,
+          "key": null
+        }
+      ],
+      "row_count": 4086759,
+      "row_count_exact": false,
+      "issues": []
+    }
+  }
+}

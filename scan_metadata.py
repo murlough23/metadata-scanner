@@ -158,7 +158,7 @@ def build_report(schema, tables, errors):
     base_tables = [t for t in tables.values() if t["type"] == "BASE TABLE"]
     return {
         "scanned_at": datetime.now(timezone.utc).isoformat(),
-        "source": {"host": CONFIG["host"], "port": CONFIG["port"], "database": schema},
+        "source": {"host": CONFIG["host"], "port": CONFIG["port"], "database": schema, "scanned_as": CONFIG["user"]},
         "summary": {
             "tables_found": len(tables),
             "base_tables": len(base_tables),
@@ -179,7 +179,7 @@ def main():
     parser.add_argument(
         "--output", 
         type=str, 
-        default="metadata_report.json",
+        default=os.getenv("OUTPUT_FILE", "metadata_report.json"),
         help="The name of the JSON file to write output to"
     )
 

@@ -1,0 +1,101 @@
+{
+  "scanned_at": "2026-11-16T01:11:00.039754+00:00",
+  "source": {
+    "host": "sample-mysql",
+    "port": 3306,
+    "database": "sakila",
+    "scanned_as": "analyst"
+  },
+  "summary": {
+    "tables_found": 2,
+    "base_tables": 2,
+    "profiled": 2,
+    "profiling_errors": 0,
+    "reconciled": true,
+    "issues_found": 3
+  },
+  "tables": {
+    "actor": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "actor_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 200
+        },
+        {
+          "name": "first_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 128
+        },
+        {
+          "name": "last_name",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 121
+        },
+        {
+          "name": "last_update",
+          "data_type": "timestamp",
+          "nullable": false,
+          "key": null,
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 1
+        }
+      ],
+      "row_count": 200,
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column actor_id count is equal to row count: 200"
+        }
+      ]
+    },
+    "film": {
+      "type": "BASE TABLE",
+      "columns": [
+        {
+          "name": "film_id",
+          "data_type": "smallint",
+          "nullable": false,
+          "key": "PRI",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 1000
+        },
+        {
+          "name": "title",
+          "data_type": "varchar",
+          "nullable": false,
+          "key": "MUL",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "distinct_count": 1000
+        }
+      ],
+      "row_count": 1000,
+      "issues": [
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column film_id count is equal to row count: 1000"
+        },
+        {
+          "rule": "cols_rows_equal",
+          "detail": "column title count is equal to row count: 1000"
+        }
+      ]
+    }
+  }
+}
